@@ -8,44 +8,58 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
-  <header class="topbar">
-    <span class="logo">tinder</span>
-  </header>
+<header class="topbar">
+  <span class="logo">tinder</span>
+</header>
 
-  <!-- Card -->
-  <main class="container">
-    <div class="card">
-      <div class="photo-area">
-        <img id="photo" alt="Clara Del Prete">
-      </div>
+<main class="container">
+  <div class="card">
 
-      <div class="info">
-        <h1>
-          Clara Del Prete <span class="age">21</span>
-          <span class="verified">✔</span>
-        </h1>
-        <p class="bio">Apaixonada por música, café e boas conversas.</p>
-      </div>
+    <!-- ÁREA DA FOTO -->
+    <div class="photo-area" id="photoArea"></div>
+
+    <!-- INFO -->
+    <div class="info">
+      <h1>
+        Clara Del Prete <span class="age">21</span>
+        <span class="verified">✔</span>
+      </h1>
+      <p class="bio">Ama café, música e conversas que duram horas.</p>
     </div>
-  </main>
 
-  <!-- Bottom HUD -->
-  <footer class="actions">
-    <button class="btn nope">✕</button>
-    <button class="btn super">★</button>
-    <button class="btn like" id="likeBtn">❤</button>
-  </footer>
-
-  <!-- Match Overlay -->
-  <div class="match" id="match">
-    <div class="match-box">
-      <h2>✨ É MATCH! ✨</h2>
-      <p>Você e Clara curtiram um ao outro</p>
-      <button onclick="closeMatch()">Continuar</button>
-    </div>
   </div>
+</main>
 
-  <script src="files/structure/script.js"></script>
+<footer class="actions">
+  <button class="btn nope">✕</button>
+  <button class="btn super">★</button>
+  <button class="btn like" id="likeBtn">❤</button>
+</footer>
+
+<!-- MATCH -->
+<div class="match" id="match">
+  <div class="match-box">
+    <h2>✨ É MATCH! ✨</h2>
+    <p>Você e Clara curtiram um ao outro</p>
+    <button onclick="closeMatch()">Continuar</button>
+  </div>
+</div>
+
+<!-- IMAGENS INVISÍVEIS (IMPORTAÇÃO REAL) -->
+<div style="display:none">
+  <img src="files/media/photos/1.jpg">
+  <img src="files/media/photos/2.jpg">
+  <img src="files/media/photos/3.jpg">
+  <img src="files/media/photos/4.jpg">
+  <img src="files/media/photos/5.jpg">
+  <img src="files/media/photos/6.jpg">
+  <img src="files/media/photos/7.jpg">
+  <img src="files/media/photos/8.jpg">
+  <img src="files/media/photos/9.jpg">
+  <img src="files/media/photos/10.jpg">
+  <img src="files/media/photos/11.jpg">
+</div>
+
+<script src="files/structure/script.js"></script>
 </body>
 </html>
