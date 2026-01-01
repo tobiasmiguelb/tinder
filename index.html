@@ -1,65 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinder - Clara</title>
-  <link rel="stylesheet" href="files/structure/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tinder - Clara Del Prete</title>
+    <link rel="stylesheet" href="./files/structure/style.css">
 </head>
 <body>
+    <!-- Barra Superior (HUD de Cima) -->
+    <header class="top-bar">
+        <img src="./files/media/icons/tinder-logo.png" alt="Tinder Logo" class="logo">
+        <div class="icons">
+            <span>🔍</span> <!-- Ícone decorativo -->
+            <span>⚙️</span> <!-- Ícone decorativo -->
+        </div>
+    </header>
 
-<header class="topbar">
-  <span class="logo">tinder</span>
-</header>
-
-<main class="container">
-  <div class="card">
-
-    <!-- ÁREA DA FOTO -->
-    <div class="photo-area" id="photoArea"></div>
-
-    <!-- INFO -->
-    <div class="info">
-      <h1>
-        Clara Del Prete <span class="age">21</span>
-        <span class="verified">✔</span>
-      </h1>
-      <p class="bio">Ama café, música e conversas que duram horas.</p>
+    <!-- Card Central -->
+    <div class="card-container">
+        <div class="card" id="card">
+            <!-- Slideshow de Fotos -->
+            <div class="photo-container">
+                <img id="photo" src="./files/media/photos/clara1.jpg" alt="Clara Del Prete">
+            </div>
+            <!-- Informações -->
+            <div class="info">
+                <h2>Clara Del Prete, 21 <img src="./files/media/icons/verified.png" alt="Verificado" class="verified"></h2>
+                <p class="bio">Amo filmes antigos, gatinhos e conexões reais. Lésbica e orgulhosa! 💖</p>
+            </div>
+        </div>
     </div>
 
-  </div>
-</main>
+    <!-- Botões Inferiores (HUD de Baixo) -->
+    <footer class="bottom-bar">
+        <button class="btn" id="dislike">❌</button>
+        <button class="btn" id="superlike">⭐</button>
+        <button class="btn" id="like">❤️</button>
+    </footer>
 
-<footer class="actions">
-  <button class="btn nope">✕</button>
-  <button class="btn super">★</button>
-  <button class="btn like" id="likeBtn">❤</button>
-</footer>
+    <!-- Overlay de Match -->
+    <div class="match-overlay" id="matchOverlay">
+        <div class="match-content">
+            <h1>✨ É MATCH! ✨</h1>
+            <p>Você e Clara curtiram um ao outro.</p>
+            <button class="close-match" id="closeMatch">Fechar</button>
+        </div>
+    </div>
 
-<!-- MATCH -->
-<div class="match" id="match">
-  <div class="match-box">
-    <h2>✨ É MATCH! ✨</h2>
-    <p>Você e Clara curtiram um ao outro</p>
-    <button onclick="closeMatch()">Continuar</button>
-  </div>
-</div>
-
-<!-- IMAGENS INVISÍVEIS (IMPORTAÇÃO REAL) -->
-<div style="display:none">
-  <img src="files/media/photos/1.jpg">
-  <img src="files/media/photos/2.jpg">
-  <img src="files/media/photos/3.jpg">
-  <img src="files/media/photos/4.jpg">
-  <img src="files/media/photos/5.jpg">
-  <img src="files/media/photos/6.jpg">
-  <img src="files/media/photos/7.jpg">
-  <img src="files/media/photos/8.jpg">
-  <img src="files/media/photos/9.jpg">
-  <img src="files/media/photos/10.jpg">
-  <img src="files/media/photos/11.jpg">
-</div>
-
-<script src="files/structure/script.js"></script>
+    <script src="./files/structure/script.js"></script>
 </body>
 </html>
