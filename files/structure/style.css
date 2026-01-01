@@ -59,8 +59,13 @@ body {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  transition: transform .35s ease, opacity .25s ease;
+  opacity: 1;
+  transition: opacity .6s ease, transform .35s ease;
   touch-action: none;
+}
+
+.photo-wrapper img.fade {
+  opacity: 0;
 }
 
 .photo-wrapper img.zoom {

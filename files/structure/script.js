@@ -5,7 +5,10 @@ const formats = ["jpg", "png", "webp", "jpeg"];
 let photos = [];
 let index = 0;
 
-/* CARREGA FOTO1..FOTO5 INDEPENDENTE DO FORMATO */
+let slideshowInterval = null;
+const SLIDESHOW_TIME = 4000; // 4 segundos
+
+/* CARREGAR FOTO1..FOTO5 (TIPO LIVRE) */
 async function loadPhotos() {
   for (let i = 1; i <= 5; i++) {
     for (let ext of formats) {
@@ -20,26 +23,46 @@ async function loadPhotos() {
     }
   }
   showPhoto();
+  startSlideshow();
 }
 
 function showPhoto() {
-  photo.style.opacity = 0;
+  photo.classList.add("fade");
+
   setTimeout(() => {
     photo.src = photos[index];
     counter.textContent = `${index + 1} / ${photos.length}`;
-    photo.style.opacity = 1;
+    photo.classList.remove("fade");
     photo.classList.remove("zoom");
-  }, 200);
+  }, 300);
 }
 
 function nextPhoto() {
   index = (index + 1) % photos.length;
   showPhoto();
+  restartSlideshow();
 }
 
 function prevPhoto() {
   index = (index - 1 + photos.length) % photos.length;
   showPhoto();
+  restartSlideshow();
+}
+
+/* SLIDESHOW AUTOMÁTICO */
+function startSlideshow() {
+  slideshowInterval = setInterval(() => {
+    nextPhoto();
+  }, SLIDESHOW_TIME);
+}
+
+function stopSlideshow() {
+  clearInterval(slideshowInterval);
+}
+
+function restartSlideshow() {
+  stopSlideshow();
+  startSlideshow();
 }
 
 /* BOTÕES */
@@ -64,9 +87,10 @@ photo.addEventListener("touchend", e => {
 /* DUPLO TOQUE (ZOOM) */
 let lastTap = 0;
 photo.addEventListener("touchend", () => {
-  const now = new Date().getTime();
+  const now = Date.now();
   if (now - lastTap < 300) {
     photo.classList.toggle("zoom");
+    stopSlideshow(); // pausa enquanto estiver em zoom
   }
   lastTap = now;
 });
