@@ -3,28 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clara Del Prete</title>
+  <title>Tinder • Clara</title>
   <link rel="stylesheet" href="files/structure/style.css">
 </head>
 <body>
 
 <div class="app">
 
-  <!-- HUD SUPERIOR -->
-  <div class="hud top">
-    <span>Clara Del Prete, 21</span>
-    <span id="counter">1 / 5</span>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="logo">tinder</span>
   </div>
 
-  <!-- FOTO -->
-  <div class="photo-wrapper">
-    <img id="photo" draggable="false">
+  <!-- CARD -->
+  <div class="card">
+
+    <div class="photo-wrapper">
+      <img id="photo" draggable="false">
+    </div>
+
+    <!-- INFO -->
+    <div class="info">
+      <div class="name">
+        Clara Del Prete, 21
+        <span class="verified">✔</span>
+      </div>
+
+      <div class="bio">
+        🎬 Apaixonada por filmes<br>
+        🐱 Gateira assumida<br>
+        🌈 Lésbica<br>
+        ✨ Conversas leves e café bom
+      </div>
+    </div>
+
+    <div class="counter" id="counter">1 / 11</div>
+
   </div>
 
-  <!-- HUD INFERIOR -->
-  <div class="hud bottom">
-    <button class="btn no">⟵</button>
-    <button class="btn like">⟶</button>
+  <!-- AÇÕES -->
+  <div class="actions">
+    <button class="btn nope">✕</button>
+    <button class="btn like">❤</button>
   </div>
 
 </div>

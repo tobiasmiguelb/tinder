@@ -5,12 +5,11 @@ const formats = ["jpg", "png", "webp", "jpeg"];
 let photos = [];
 let index = 0;
 
-let slideshowInterval = null;
-const SLIDESHOW_TIME = 4000; // 4 segundos
+const SLIDESHOW_TIME = 3500;
 
-/* CARREGAR FOTO1..FOTO5 (TIPO LIVRE) */
+/* CARREGAR FOTO1..FOTO11 */
 async function loadPhotos() {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 11; i++) {
     for (let ext of formats) {
       const path = `files/media/photos/foto${i}.${ext}`;
       try {
@@ -27,13 +26,11 @@ async function loadPhotos() {
 }
 
 function showPhoto() {
-  photo.classList.add("fade");
-
+  photo.style.opacity = 0;
   setTimeout(() => {
     photo.src = photos[index];
     counter.textContent = `${index + 1} / ${photos.length}`;
-    photo.classList.remove("fade");
-    photo.classList.remove("zoom");
+    photo.style.opacity = 1;
   }, 300);
 }
 
@@ -49,50 +46,31 @@ function prevPhoto() {
   restartSlideshow();
 }
 
-/* SLIDESHOW AUTOMÁTICO */
+/* SLIDESHOW */
+let slideshow;
 function startSlideshow() {
-  slideshowInterval = setInterval(() => {
-    nextPhoto();
-  }, SLIDESHOW_TIME);
-}
-
-function stopSlideshow() {
-  clearInterval(slideshowInterval);
+  slideshow = setInterval(nextPhoto, SLIDESHOW_TIME);
 }
 
 function restartSlideshow() {
-  stopSlideshow();
+  clearInterval(slideshow);
   startSlideshow();
 }
 
 /* BOTÕES */
 document.querySelector(".btn.like").onclick = nextPhoto;
-document.querySelector(".btn.no").onclick = prevPhoto;
+document.querySelector(".btn.nope").onclick = prevPhoto;
 
 /* SWIPE */
 let startX = 0;
-
 photo.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
 });
 
 photo.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  let diff = endX - startX;
-
+  const diff = e.changedTouches[0].clientX - startX;
   if (diff > 50) prevPhoto();
   if (diff < -50) nextPhoto();
-});
-
-/* DUPLO TOQUE (ZOOM) */
-let lastTap = 0;
-photo.addEventListener("touchend", () => {
-  const now = Date.now();
-  if (now - lastTap < 300) {
-    photo.classList.toggle("zoom");
-    stopSlideshow(); // pausa enquanto estiver em zoom
-  }
-  lastTap = now;
 });
 
 loadPhotos();
