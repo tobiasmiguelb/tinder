@@ -3,52 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinder • Clara</title>
+  <title>Tinder - Clara</title>
   <link rel="stylesheet" href="files/structure/style.css">
 </head>
 <body>
 
-<div class="app">
-
-  <!-- TOP BAR -->
-  <div class="topbar">
+  <!-- Top Bar -->
+  <header class="topbar">
     <span class="logo">tinder</span>
-  </div>
+  </header>
 
-  <!-- CARD -->
-  <div class="card">
-
-    <div class="photo-wrapper">
-      <img id="photo" draggable="false">
-    </div>
-
-    <!-- INFO -->
-    <div class="info">
-      <div class="name">
-        Clara Del Prete, 21
-        <span class="verified">✔</span>
+  <!-- Card -->
+  <main class="container">
+    <div class="card">
+      <div class="photo-area">
+        <img id="photo" alt="Clara Del Prete">
       </div>
 
-      <div class="bio">
-        🎬 Apaixonada por filmes<br>
-        🐱 Gateira assumida<br>
-        🌈 Lésbica<br>
-        ✨ Conversas leves e café bom
+      <div class="info">
+        <h1>
+          Clara Del Prete <span class="age">21</span>
+          <span class="verified">✔</span>
+        </h1>
+        <p class="bio">Apaixonada por música, café e boas conversas.</p>
       </div>
     </div>
+  </main>
 
-    <div class="counter" id="counter">1 / 11</div>
-
-  </div>
-
-  <!-- AÇÕES -->
-  <div class="actions">
+  <!-- Bottom HUD -->
+  <footer class="actions">
     <button class="btn nope">✕</button>
-    <button class="btn like">❤</button>
+    <button class="btn super">★</button>
+    <button class="btn like" id="likeBtn">❤</button>
+  </footer>
+
+  <!-- Match Overlay -->
+  <div class="match" id="match">
+    <div class="match-box">
+      <h2>✨ É MATCH! ✨</h2>
+      <p>Você e Clara curtiram um ao outro</p>
+      <button onclick="closeMatch()">Continuar</button>
+    </div>
   </div>
 
-</div>
-
-<script src="files/structure/script.js"></script>
+  <script src="files/structure/script.js"></script>
 </body>
 </html>

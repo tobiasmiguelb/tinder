@@ -1,76 +1,44 @@
-const photo = document.getElementById("photo");
-const counter = document.getElementById("counter");
+const photoContainer = document.querySelector('.photo-area');
+const likeBtn = document.getElementById('likeBtn');
+const match = document.getElementById('match');
 
-const formats = ["jpg", "png", "webp", "jpeg"];
 let photos = [];
-let index = 0;
+let current = 0;
 
-const SLIDESHOW_TIME = 3500;
-
-/* CARREGAR FOTO1..FOTO11 */
+// Lista automática das imagens (11 ou quantas tiver)
 async function loadPhotos() {
-  for (let i = 1; i <= 11; i++) {
-    for (let ext of formats) {
-      const path = `files/media/photos/foto${i}.${ext}`;
-      try {
-        const res = await fetch(path, { method: "HEAD" });
-        if (res.ok) {
-          photos.push(path);
-          break;
-        }
-      } catch {}
-    }
-  }
-  showPhoto();
+  const response = await fetch('files/media/photos/');
+  const text = await response.text();
+
+  const matches = [...text.matchAll(/href="([^"]+\.(jpg|jpeg|png|webp))"/gi)];
+  photos = matches.map(m => 'files/media/photos/' + m[1]);
+
+  photos.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;
+    if (i === 0) img.classList.add('active');
+    photoContainer.appendChild(img);
+  });
+
   startSlideshow();
 }
 
-function showPhoto() {
-  photo.style.opacity = 0;
-  setTimeout(() => {
-    photo.src = photos[index];
-    counter.textContent = `${index + 1} / ${photos.length}`;
-    photo.style.opacity = 1;
-  }, 300);
-}
-
-function nextPhoto() {
-  index = (index + 1) % photos.length;
-  showPhoto();
-  restartSlideshow();
-}
-
-function prevPhoto() {
-  index = (index - 1 + photos.length) % photos.length;
-  showPhoto();
-  restartSlideshow();
-}
-
-/* SLIDESHOW */
-let slideshow;
 function startSlideshow() {
-  slideshow = setInterval(nextPhoto, SLIDESHOW_TIME);
+  const imgs = document.querySelectorAll('.photo-area img');
+  setInterval(() => {
+    imgs[current].classList.remove('active');
+    current = (current + 1) % imgs.length;
+    imgs[current].classList.add('active');
+  }, 3000);
 }
 
-function restartSlideshow() {
-  clearInterval(slideshow);
-  startSlideshow();
+// Sempre dá match
+likeBtn.addEventListener('click', () => {
+  match.style.display = 'flex';
+});
+
+function closeMatch() {
+  match.style.display = 'none';
 }
-
-/* BOTÕES */
-document.querySelector(".btn.like").onclick = nextPhoto;
-document.querySelector(".btn.nope").onclick = prevPhoto;
-
-/* SWIPE */
-let startX = 0;
-photo.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-photo.addEventListener("touchend", e => {
-  const diff = e.changedTouches[0].clientX - startX;
-  if (diff > 50) prevPhoto();
-  if (diff < -50) nextPhoto();
-});
 
 loadPhotos();
